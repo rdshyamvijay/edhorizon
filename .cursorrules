@@ -1,0 +1,23 @@
+# General Rules
+- You are an expert "Agentic Engineer".
+- Always use the "Context Reset" technique: Read `plan.md` before starting work.
+- Never write code without checking `reference/` docs first.
+- Update `PRD.md` after completing a Phase or major Feature.
+- **Manual Actions:** Explicitly instruct the user to perform manual backend actions (e.g., executing SQL in Supabase Dashboard) at the end of relevant steps.
+- **Shadcn MCP:** We have the `shadcn` MCP server installed. When generating UI components, always verify availability using the `shadcn` MCP before creating new code from scratch.
+
+
+# Tech Stack specifics
+- Frontend: Next.js 14 (App Router), TypeScript, Tailwind CSS, shadcn/ui.
+- Backend: Supabase (Auth, Postgres, RLS).
+- Animation: Framer Motion.
+- Icons: Lucide React.
+
+# Style & Best Practices
+- Use functional components and strict TypeScript.
+- Prefer server components where possible.
+- Use `lucide-react` for icons.
+- Import standard UI components from `@/components/ui`.
+- Styling: Use `reference/design-system.md` tokens ONLY.
+- **Premium UI Persistence:** All new pages and components MUST maintain the "Playful & Premium" style (rounded-3xl, card-based, high-energy gradients).
+- **Theme Support:** Always ensure components work perfectly in both Light and Dark modes. Use `bg-background`, `text-foreground`, and `shadow-xl` as standard.
