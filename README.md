@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌅 EdHorizon
 
-## Getting Started
+> **A Symphony of Learning & Operational Excellence, Built for the Era of AI.**
 
-First, run the development server:
+EdHorizon is not just a platform; it’s a modern engineering manifesto. Built with **Next.js 15**, **Supabase**, and **Tailwind v4**, it represents the pinnacle of AI-assisted software development—where rapid iteration meets high-fidelity design.
+
+---
+
+## 📖 The Story of EdHorizon
+
+In the traditional world of EdTech, complexity often kills engagement. We set out to change that by building a system that balances a **"Playful & Premium"** student experience with a high-performance administrative engine. 
+
+### 🎭 Chapter 1: The Learner’s Journey (Student)
+For the student, EdHorizon is a canvas of knowledge. Inspired by the gamified engagement of Duolingo, the platform offers a "distraction-free" interface where learning units—**Capsules**—are delivered with smooth micro-animations and immediate feedback.
+- **Use Case**: A student logs in, sees their specific grade-level subjects (Hindi, Math, Science), and resumes a Video Capsule exactly where they left off. They complete a Quiz Capsule, receive instant gratification through UI feedback, and track their progress toward mastery.
+
+### 🎨 Chapter 2: The Architect’s Studio (Teacher)
+Teachers are the heart of the platform. We empowered them with a **Content Studio** that feels like a creative workspace rather than a database entry form.
+- **Use Case**: A Teacher uses the **3-Step Capsule Wizard** to quickly prototype a new lesson. 
+  1. **Format**: Select "Quiz".
+  2. **Metadata**: Link it to "Grade 9 Mathematics - Algebra".
+  3. **Content**: Drop in questions. 
+  The result? A high-quality learning unit published in minutes, not hours.
+
+### 📈 Chapter 3: The Engine of Growth (Sales)
+An academy thrives when its pipeline is healthy. EdHorizon integrates a **Kanban-style CRM** directly into the core, removing the need for fragmented third-party tools.
+- **Use Case**: A Sales Representative views their daily **Pipeline Board**. They drag a "New Lead" into the "Demo Scheduled" column. The system automatically tracks the conversion value, providing the academy with real-time growth forecasting.
+
+### 🏦 Chapter 4: The Harmony of Personnel (HR)
+Managing educators and staff requires precision. The **HR Dashboard** and **Payroll Pulse** modules bring financial clarity to academy operations.
+- **Use Case**: At the end of the month, the HR Manager opens the **Payroll Pulse**. The system auto-calculates payouts based on the **Staff Registry** metadata (Base Salary, Attendance, Role). With one click, a new "Payroll Run" is generated, ensuring everyone is paid accurately and on time.
+
+### 🔭 Chapter 5: The Command Center (Super Admin)
+For the enterprise owner, data is the ultimate lever. The **Super Admin Analytics** dashboard provides a "God View" of the entire ecosystem.
+- **Use Case**: The Super Admin monitors **Live Database Sync** indicators, reviews **System Health**, and analyzes **Module Engagement** heatmaps to decide which subjects to expand or refine.
+
+---
+
+## 🛠️ The Engineering Philosophy (AI-Era)
+
+This project was built using **Modern Software Engineering Methodologies** tailored for the AI age:
+
+1.  **Context-Driven Development**: Leveraging deep-context documentation (`plan.md`, `PRD.md`) to ensure AI agents and human developers act as a unified team.
+2.  **Schema-First Architecture**: Robust PostgreSQL foundations with strict **Row Level Security (RLS)** ensure security is inherited, not added.
+3.  **Atomic Design**: UI components are built with **Tailwind v4** and **shadcn/ui**, ensuring a design system that is both ultra-consistent and extremely performant.
+4.  **Optimistic UI**: Every interaction (like moving a lead or saving a capsule) is designed for perceived speed, using Next.js 15's concurrent rendering capabilities.
+
+---
+
+## 🚀 Technical Stack
+
+- **Frontend**: Next.js 15 (App Router), React 19, Framer Motion
+- **Styling**: Tailwind CSS v4, shadcn/ui
+- **Backend & Security**: Supabase (PostgreSQL, Auth, RLS)
+- **Deployment**: Vercel & Supabase Cloud
+
+---
+
+## ⚙️ Getting Started
 
 ```bash
+# Clone the vision
+git clone https://github.com/rdshyamvijay/edhorizon.git
+
+# Install the engine
+npm install
+
+# ignite the environment
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Open [http://localhost:3000](http://localhost:3000) to enter the horizon.
