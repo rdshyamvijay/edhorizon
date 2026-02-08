@@ -3,7 +3,7 @@ import { ThemeToggle } from "@/components/shared/ThemeToggle";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Search, Filter, MoreHorizontal, Mail, Calendar } from "lucide-react";
+import { Search, Filter, MoreHorizontal, Mail, Calendar, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default async function StaffDirectory() {
@@ -47,7 +47,7 @@ export default async function StaffDirectory() {
                 </div>
                 <div className="flex items-center gap-2 w-full md:w-auto">
                     <Button variant="outline" className="rounded-full gap-2 text-xs font-bold uppercase tracking-widest h-12 px-6">
-                        <Filter h-4 w-4 />
+                        <Filter className="h-4 w-4" />
                         Filters
                     </Button>
                     <Button className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full h-12 px-8 font-bold text-xs uppercase tracking-widest ml-auto md:ml-0">
