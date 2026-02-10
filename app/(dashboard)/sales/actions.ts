@@ -49,7 +49,7 @@ export async function updateLeadStatus(leadId: string, status: string) {
         return { error: error.message };
     }
 
-    revalidatePath("/sales");
+    revalidatePath("/sales", "page");
     return { success: true };
 }
 
@@ -81,6 +81,6 @@ export async function addLead(formData: FormData) {
         return { error: error.message };
     }
 
-    revalidatePath("/sales");
+    revalidatePath("/sales", "page");
     return { success: true };
 }

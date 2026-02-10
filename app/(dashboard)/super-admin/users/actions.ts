@@ -42,7 +42,7 @@ export async function updateUserRole(userId: string, newRole: string) {
 
     if (!user) return { error: "Not authenticated" };
 
-    // Security: Check if requester is super_admin
+    // Security: Check if requester is super_admin (optimized single query)
     const { data: requesterProfile } = await supabase
         .from("profiles")
         .select("role")
@@ -53,6 +53,7 @@ export async function updateUserRole(userId: string, newRole: string) {
         return { error: "Unauthorized" };
     }
 
+    // Update the user role
     const { error } = await supabase
         .from("profiles")
         .update({ role: newRole })
@@ -60,6 +61,7 @@ export async function updateUserRole(userId: string, newRole: string) {
 
     if (error) return { error: error.message };
 
-    revalidatePath("/super-admin/users");
+    // Use more specific revalidation for better performance
+    revalidatePath("/super-admin/users", "page");
     return { success: true };
 }

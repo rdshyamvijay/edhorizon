@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { updateUserRole } from "@/app/(dashboard)/super-admin/users/actions";
 import {
     Table,
@@ -23,16 +23,30 @@ import { Loader2 } from "lucide-react";
 
 export default function UserTable({ users }: { users: any[] }) {
     const [loadingId, setLoadingId] = useState<string | null>(null);
+    const [optimisticUsers, setOptimisticUsers] = useState(users);
+
+    // Sync optimistic state when users prop changes (e.g., after revalidation)
+    useEffect(() => {
+        setOptimisticUsers(users);
+    }, [users]);
 
     const handleRoleChange = async (userId: string, newRole: string) => {
+        // Optimistic update - update UI immediately
+        const previousUsers = [...optimisticUsers];
+        setOptimisticUsers(
+            optimisticUsers.map(u =>
+                u.id === userId ? { ...u, role: newRole } : u
+            )
+        );
+
         setLoadingId(userId);
         const result = await updateUserRole(userId, newRole);
         setLoadingId(null);
 
         if (result.error) {
+            // Revert optimistic update on error
+            setOptimisticUsers(previousUsers);
             alert("Error: " + result.error);
-        } else {
-            // success toast or alert
         }
     };
 
@@ -48,7 +62,7 @@ export default function UserTable({ users }: { users: any[] }) {
                     </TableRow>
                 </TableHeader>
                 <TableBody>
-                    {users.map((user) => (
+                    {optimisticUsers.map((user) => (
                         <TableRow key={user.id}>
                             <TableCell className="font-medium">{user.full_name || "N/A"}</TableCell>
                             <TableCell>{user.email}</TableCell>

@@ -67,6 +67,6 @@ export async function createCapsule(formData: FormData) {
         return { error: error.message };
     }
 
-    revalidatePath("/teacher");
+    revalidatePath("/teacher", "page");
     return { success: true };
 }
