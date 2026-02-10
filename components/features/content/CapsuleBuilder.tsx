@@ -10,6 +10,8 @@ import { Card } from "@/components/ui/card"
 import { ArrowRight, ArrowLeft, Save, Sparkles, FileText, HelpCircle } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { saveCapsule } from "@/app/(dashboard)/content/actions"
+import { McqBuilder } from "./McqBuilder"
+import { FlashcardBuilder } from "./FlashcardBuilder"
 
 export function CapsuleBuilder({ topics }: { topics: any[] }) {
     const [step, setStep] = useState(1)
@@ -17,6 +19,8 @@ export function CapsuleBuilder({ topics }: { topics: any[] }) {
     const [title, setTitle] = useState('')
     const [topicId, setTopicId] = useState('')
     const [loading, setLoading] = useState(false)
+    const [quizContent, setQuizContent] = useState<{ questions: any[] }>({ questions: [] })
+    const [flashcardContent, setFlashcardContent] = useState<{ cards: any[] }>({ cards: [] })
     const router = useRouter()
 
     const handleSave = async () => {
@@ -27,7 +31,11 @@ export function CapsuleBuilder({ topics }: { topics: any[] }) {
                 title,
                 topic_id: topicId,
                 type,
-                content: type === 'video' ? { videoUrl: '', description: '' } : {} // Simplified for now
+                content: type === 'quiz'
+                    ? quizContent
+                    : type === 'flashcards'
+                        ? flashcardContent
+                        : (type === 'video' ? { videoUrl: '', description: '' } : {})
             });
             router.push('/content');
         } catch (error) {
@@ -158,17 +166,9 @@ export function CapsuleBuilder({ topics }: { topics: any[] }) {
                                 </div>
                             </div>
                         ) : type === 'quiz' ? (
-                            <div className="py-12 text-center space-y-4">
-                                <HelpCircle size={48} className="mx-auto text-muted-foreground opacity-20" />
-                                <p className="text-muted-foreground italic">Interactive MCQ Builder interface coming in Phase 10 extension.</p>
-                                <Button className="bg-muted text-foreground hover:bg-muted/80 rounded-xl">Add First Question</Button>
-                            </div>
+                            <McqBuilder onChange={setQuizContent} />
                         ) : (
-                            <div className="py-12 text-center space-y-4">
-                                <FileText size={48} className="mx-auto text-muted-foreground opacity-20" />
-                                <p className="text-muted-foreground italic">Flashcard deck editor interface coming in Phase 10 extension.</p>
-                                <Button className="bg-muted text-foreground hover:bg-muted/80 rounded-xl">Add New Card</Button>
-                            </div>
+                            <FlashcardBuilder onChange={setFlashcardContent} />
                         )}
                     </Card>
 

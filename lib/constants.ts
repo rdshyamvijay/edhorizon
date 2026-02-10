@@ -8,7 +8,8 @@ import {
     DollarSign,
     FileText,
     GraduationCap,
-    Briefcase
+    Briefcase,
+    UsersRound
 } from "lucide-react";
 
 export const ROLE_REDIRECTS = {
@@ -27,6 +28,12 @@ export const NAV_ITEMS = [
         href: "/student",
         icon: LayoutDashboard,
         roles: ["student", "parent"],
+    },
+    {
+        title: "Tutoring",
+        href: "/tutoring",
+        icon: UsersRound,
+        roles: ["hr", "super_admin", "admin", "teacher"],
     },
     {
         title: "Learn",
@@ -81,6 +88,12 @@ export const NAV_ITEMS = [
         href: "/hr/staff",
         icon: Users,
         roles: ["hr", "super_admin"],
+    },
+    {
+        title: "Student Directory",
+        href: "/hr/students",
+        icon: GraduationCap,
+        roles: ["hr", "super_admin", "admin"],
     },
     {
         title: "Payroll Pulse",

@@ -33,6 +33,53 @@ export async function getLeads() {
     return leads;
 }
 
+export async function getPipelineStages() {
+    const supabase = await createClient();
+    const { data: stages, error } = await supabase
+        .from("pipeline_stages")
+        .select("*")
+        .order("order_index", { ascending: true });
+
+    if (error) {
+        console.error("Error fetching stages:", error);
+        return [];
+    }
+
+    return stages;
+}
+
+export async function addPipelineStage(label: string) {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) return { error: "Not authenticated" };
+
+    const slug = label.toLowerCase().replace(/\s+/g, "_");
+
+    // Get max order_index
+    const { data: stages } = await supabase
+        .from("pipeline_stages")
+        .select("order_index")
+        .order("order_index", { ascending: false })
+        .limit(1);
+
+    const nextOrder = (stages?.[0]?.order_index ?? -1) + 1;
+
+    const { error } = await supabase.from("pipeline_stages").insert({
+        label,
+        slug,
+        order_index: nextOrder
+    });
+
+    if (error) {
+        console.error("Error adding stage:", error);
+        return { error: error.message };
+    }
+
+    revalidatePath("/sales", "page");
+    return { success: true };
+}
+
 export async function updateLeadStatus(leadId: string, status: string) {
     const supabase = await createClient();
     const { data: { user } } = await supabase.auth.getUser();
@@ -46,6 +93,26 @@ export async function updateLeadStatus(leadId: string, status: string) {
 
     if (error) {
         console.error("Error updating lead status:", error);
+        return { error: error.message };
+    }
+
+    revalidatePath("/sales", "page");
+    return { success: true };
+}
+
+export async function updateLead(leadId: string, data: any) {
+    const supabase = await createClient();
+    const { data: { user } } = await supabase.auth.getUser();
+
+    if (!user) return { error: "Not authenticated" };
+
+    const { error } = await supabase
+        .from("leads")
+        .update(data)
+        .eq("id", leadId);
+
+    if (error) {
+        console.error("Error updating lead:", error);
         return { error: error.message };
     }
 
