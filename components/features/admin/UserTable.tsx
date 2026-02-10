@@ -20,7 +20,6 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
-import { toast } from "sonner"; // Assuming we might add sonner or just used alert for now
 
 export default function UserTable({ users }: { users: any[] }) {
     const [loadingId, setLoadingId] = useState<string | null>(null);
